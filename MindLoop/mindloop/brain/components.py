@@ -21,6 +21,31 @@ class PrefrontalCortex(BrainComponent):
     pass
 
 
+class BasalGanglia(BrainComponent):
+    """Basal ganglia: action selection, habit formation, and procedural learning."""
+    pass
+
+
+class Cerebellum(BrainComponent):
+    """Cerebellum: motor learning, coordination, and error correction."""
+    pass
+
+
+class Hippocampus(BrainComponent):
+    """Hippocampus: memory formation, spatial navigation, and contextual learning."""
+    pass
+
+
+class RewardSystem(BrainComponent):
+    """Reward system: motivation, reinforcement learning, and value-based decision making."""
+    pass
+
+
+class ReflexArc(BrainComponent):
+    """Reflex arc: fast, automatic sensorimotor responses for immediate reactions."""
+    pass
+
+
 class Brain:
     """Container for brain components."""
 
@@ -35,3 +60,23 @@ class Brain:
         if not component:
             raise KeyError(f"Component {component_name} not found")
         component.train(data)
+
+
+def create_default_brain():
+    """
+    Create a Brain instance with all major brain components registered.
+    Returns:
+        Brain: A brain with MotorCortex, PrefrontalCortex, BasalGanglia, Cerebellum, Hippocampus, RewardSystem, and ReflexArc.
+    Example:
+        brain = create_default_brain()
+        brain.train_component('MotorCortex', data)
+    """
+    brain = Brain()
+    brain.register('MotorCortex', MotorCortex('MotorCortex'))
+    brain.register('PrefrontalCortex', PrefrontalCortex('PrefrontalCortex'))
+    brain.register('BasalGanglia', BasalGanglia('BasalGanglia'))
+    brain.register('Cerebellum', Cerebellum('Cerebellum'))
+    brain.register('Hippocampus', Hippocampus('Hippocampus'))
+    brain.register('RewardSystem', RewardSystem('RewardSystem'))
+    brain.register('ReflexArc', ReflexArc('ReflexArc'))
+    return brain
